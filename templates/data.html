@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+        table, th, td {
+            border:1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patients Aged 20 to 40 - Bar Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- <canvas id="ageChart"></canvas> -->
+    <h1>Patients Aged 20 to 40</h1>
+    <table class="table" style="width: 80%">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Index</th>
+                <th scope="col">Patient ID</th>
+                <th scope="col">Age</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Air Pollution</th>
+                <th scope="col">Alcohol Use</th>
+                <th scope="col">Dust Allergy</th>
+                <th scope="col">Occupational Hazards</th>
+                <th scope="col">Genetic Risk</th>
+                <th scope="col">Chronic Lung Disease</th>
+                <th scope="col">Balanced Diet</th>
+                <th scope="col">Obesity</th>
+                <th scope="col">Smoking</th>
+                <th scope="col">Passive Smoker</th> 
+                <th scope="col">Chest Pain</th>
+                <th scope="col">Coughing Of Blood</th> 
+                <th scope="col">Fatigue</th>
+                <th scope="col">Weight Loss</th>
+                <th scope="col">Shortness Of Breath</th> 
+                <th scope="col">Wheezing</th>
+                <th scope="col">Swallowing Difficulty</th> 
+                <th scope="col">Clubbing Of Finger Nails</th>
+                <th scope="col">Frequent Cold</th>
+                <th scope="col">Dry Cough</th>
+                <th scope="col">Snoring</th>
+                <th scope="col">Level</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for values in data %}
+                    <tr>
+                        <th scope="row">{{loop.index}}</th>
+                        <td>{{ values[1] }}</td>
+                        <td>{{ values[2] }}</td>
+                        <td>{{ values[3] }}</td>
+                        <td>{{ values[4] }}</td>
+                        <td>{{ values[5] }}</td>
+                        <td>{{ values[6] }}</td>
+                        <td>{{ values[7] }}</td>
+                        <td>{{ values[8] }}</td>
+                        <td>{{ values[9] }}</td>
+                        <td>{{ values[10] }}</td>
+                        <td>{{ values[11] }}</td>
+                        <td>{{ values[12] }}</td>
+                        <td>{{ values[13] }}</td>
+                        <td>{{ values[14] }}</td>
+                        <td>{{ values[15] }}</td>
+                        <td>{{ values[16] }}</td>
+                        <td>{{ values[17] }}</td>
+                        <td>{{ values[18] }}</td>
+                        <td>{{ values[19] }}</td>
+                        <td>{{ values[20] }}</td>
+                        <td>{{ values[21] }}</td>
+                        <td>{{ values[22] }}</td>
+                        <td>{{ values[23] }}</td>
+                        <td>{{ values[24] }}</td>
+                        <td>{{ values[25] }}</td>
+                    </tr>
+            {% endfor %}
+    </tbody>
+    </table>
+</body>
+</html>

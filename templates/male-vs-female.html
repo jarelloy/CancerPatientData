@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Male vs Female Comparison</title>
+</head>
+<body>
+    <h1>Male vs Female Comparison</h1>
+
+    <h2> Male Chart </h2>
+    <div class="col-xs-10, col-sm-6">
+        <div class="card card-style mb-2">
+            <div class="card-body">
+                <div class="chart-container" style="position: relative">
+                    <canvas id="average-male-data"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2> Female Chart </h2>
+    <div class="col-xs-10, col-sm-6">
+        <div class="card card-style mb-2">
+            <div class="card-body">
+                <div class="chart-container" style="position: relative">
+                    <canvas id="average-female-data"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let maleData = {{ averageMaleData | tojson | safe }};
+        let femaleData = {{ averageFemaleData | tojson | safe }};
+
+        data_labels = ['Air Pollution', 'Alcohol Use', 'Dust Allegy', 'Occupational Hazards', 'Genetic Risk', 'Chronic Lung Disease', 'Balanced Diet ', 'Obesity', 'Smoking', 'Passive Smoker', 'Chest Pain', 'Coughing Of Blood', 'Fatigue', 'Weight Loss', 'Shortness Of Breath', 'Swallowing Difficult', 'Clubbing Of Finger Nails', 'Frequent Cold', 'Dry Cough', 'Snoring']
+
+        var maleDataMap = new Map();
+        var femaleDataMap = new Map();
+
+        for(let i = 0; i < maleData[0].length; i++) {
+            maleDataMap.set(data_labels[i], maleData[0][i]);
+            femaleDataMap.set(data_labels[i], femaleData[0][i]);
+        }
+
+        var maleDataLabels = Array.from(maleDataMap.keys());
+        var maleDataValues = Array.from(maleDataMap.values());
+        var femaleDataLabels = Array.from(femaleDataMap.keys());
+        var femaleDataValues = Array.from(femaleDataMap.values());
+
+        const chartOptions = {
+            scales: {
+            y: {
+                beginAtZero: true
+            },
+            r: {
+                grid: {
+                    display: false
+                }
+            },
+            }
+        };
+
+        const malePolarAreaChart = document.getElementById('average-male-data');
+        new Chart(malePolarAreaChart, {
+        type: 'polarArea',
+        data: {
+            labels: maleDataLabels,
+            datasets: [{
+                label: 'Male Dataset',
+                data: maleDataValues,
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(75, 192, 192)',
+                    'rgb(255, 205, 86)',
+                    'rgb(201, 203, 207)',
+                    'rgb(54, 162, 235)'
+                ]
+            }]
+        },
+        chartOptions
+        });
+
+        const femalePolarAreaChart = document.getElementById('average-female-data');
+        new Chart(femalePolarAreaChart, {
+        type: 'polarArea',
+        data: {
+            labels: femaleDataLabels,
+            datasets: [{
+                label: 'Female Dataset',
+                data: femaleDataValues,
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(75, 192, 192)',
+                    'rgb(255, 205, 86)',
+                    'rgb(201, 203, 207)',
+                    'rgb(54, 162, 235)'
+                ]
+            }]
+        },
+        chartOptions
+        });
+
+    </script>
+</body>
+</html>
